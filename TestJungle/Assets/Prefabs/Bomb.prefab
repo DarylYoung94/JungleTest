@@ -127,10 +127,10 @@ MonoBehaviour:
     type: 3}
   time: 3
   radius: 10
-  power: 10
+  power: 700
   upForce: 2
   BombPrefab: {fileID: 3470140234725982075}
-  Damage: 25
+  Damage: 15
 --- !u!114 &8753328785909069127
 MonoBehaviour:
   m_ObjectHideFlags: 0

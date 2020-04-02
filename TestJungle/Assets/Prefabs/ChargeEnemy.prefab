@@ -376,6 +376,7 @@ MonoBehaviour:
   itemIndex: 0
   dropChance: 0
   enemyManager: {fileID: 0}
+  dmgPopLoc: {x: 0, y: 2.5, z: 0}
 --- !u!54 &4699530912284115364
 Rigidbody:
   m_ObjectHideFlags: 0

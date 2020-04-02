@@ -12,6 +12,15 @@ public class PlayerManager : MonoBehaviour
     public GameObject healthCanvas;
     public float maxHealth;
     public float leveledHealth;
+    public Image ExpBar;
+    public float EXP;
+    public float EXP2;
+    public Text healthText;
+    public Text expText;
+    public Text levelText;
+    public float lvl;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +37,13 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         maxHealth = startHealth + (player.GetComponent<PlayerXP>().level * 10);
-       
+        EXP = player.GetComponent<PlayerXP>().exp;
+        EXP2 = player.GetComponent<PlayerXP>().expToNextLevel;
+        lvl = player.GetComponent<PlayerXP>().level;
+        ExpBar.fillAmount = EXP / EXP2;
+        healthText.text = health.ToString() + "/" + maxHealth.ToString();
+        expText.text = EXP.ToString() + "/" + EXP2.ToString();
+        levelText.text =  "Level " + lvl.ToString();
     }
 
     public void TakeDamage(float amount)

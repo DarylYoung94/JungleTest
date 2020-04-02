@@ -9,14 +9,14 @@ public class LearnAbility : MonoBehaviour
 
 
 
- 
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         trigCube = GameObject.FindGameObjectWithTag("PickUp");
-      
-        
+
+
     }
     private void Update()
     {
@@ -25,7 +25,7 @@ public class LearnAbility : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.CompareTag("Player"))
+        if (collision.collider.CompareTag("Player"))
         {
             if (player.GetComponent<Abilityscript>().enabled == true)
             {
@@ -34,15 +34,18 @@ public class LearnAbility : MonoBehaviour
             }
 
             else
+            {
                 Debug.Log("Collision");
-          //trigCube.SetActive(true);
-            player.GetComponent<Abilityscript>().enabled = true;
-            //AbilityManager.AbilityTriggers.Remove[]
-            Destroy(this.gameObject);
+
+                player.GetComponent<Abilityscript>().enabled = true;
+
+                Destroy(this.gameObject);
             }
-           
+
         }
-        
+
+
     }
+}
     
 

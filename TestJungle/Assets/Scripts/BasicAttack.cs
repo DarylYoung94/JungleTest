@@ -17,6 +17,10 @@ public class BasicAttack : MonoBehaviour
     public float bulletSpeed ;
     public Rigidbody bulletRB;
     Camera cam;
+    public bool attackSpeedBuff=false;
+    public float playerLevel;
+    public GameObject player;
+    public float atkSpeedMultiplier;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +32,25 @@ public class BasicAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        attackSpeedBuff = player.GetComponent<AttackSpeedBuff>().triggered;
+        playerLevel = player.GetComponent<PlayerXP>().level;
+        if(playerLevel ==2 && attackSpeedBuff ==false)
+        {
+            cooldownTime = 0.9f;
+        }
+        if (playerLevel == 3 && attackSpeedBuff == false)
+        {
+            cooldownTime = 0.8f;
+        }
+        if (playerLevel == 4 && attackSpeedBuff == false)
+        {
+            cooldownTime = 0.7f;
+        }
+        if (playerLevel == 5 && attackSpeedBuff == false)
+        {
+            cooldownTime = 0.6f;
+        }
+
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 

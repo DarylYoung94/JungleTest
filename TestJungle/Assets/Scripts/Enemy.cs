@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     Camera  cam;
     public float healthness;
     public float startHealth ;
-    public float health ;
+    public float health =0 ;
     public GameObject enemy;
     public GameObject Loot1;
     public GameObject player;
@@ -27,19 +27,15 @@ public class Enemy : MonoBehaviour
     public int itemIndex;
     public float dropChance ;
     public GameObject enemyManager;
-
-    //public int ItemIndex;
+    public Vector3 dmgPopLoc;
+    
     // Start is called before the first frame update
     void Start()
     {
-
- 
-
-       
         healthness = startHealth + 10 * enemyLevel;
-
-        enemy = this.gameObject;
         health = healthness;
+        enemy = this.gameObject;
+      
         cam = Camera.main;
     }
 
@@ -58,13 +54,11 @@ public class Enemy : MonoBehaviour
     {
         health -= amount;
         damageTaken = amount;
-       //damageTaken = enemy.gameObject.GetComponent<Enemy>().damageTaken;
+  
         if (damagePop )
         {
             ShowDamagePop();
         }
-
-
 
         //show damage
         healthBar.fillAmount = health / healthness;
@@ -104,16 +98,11 @@ public class Enemy : MonoBehaviour
 //
 public void ShowDamagePop()
     {
-        GameObject DMG = Instantiate(damagePop, transform.position + (Vector3.up * 2.5f)  , Quaternion.identity);
+        GameObject DMG = Instantiate(damagePop, transform.position + (dmgPopLoc)  , Quaternion.identity);
         if(DMG != null)
         {
             DMG.GetComponent<TextMesh>().text = damageTaken.ToString();
             Debug.Log(damageTaken + " damageTaken" );
-       
-            
-                
-            
-
         }
             
     }

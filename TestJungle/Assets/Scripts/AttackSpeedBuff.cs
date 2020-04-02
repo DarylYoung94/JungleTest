@@ -58,6 +58,7 @@ public class AttackSpeedBuff : MonoBehaviour
         if (triggered && !spawned )
         {
         this.gameObject.GetComponent<BasicAttack>().cooldownTime = 1f;
+            triggered = false;
         }
          
         
@@ -97,6 +98,7 @@ public class AttackSpeedBuff : MonoBehaviour
 
     public void OnTriggerExit(Collider collision)
     {
+        triggered = false;
         Debug.Log("Exit");
         if (collision.gameObject.tag == "AtkSpd")
         {

@@ -14,6 +14,7 @@ public class Ability2 : MonoBehaviour
     public GameObject player;
     public bool inRange ;
     private Vector3 wallAim;
+    public KeyCode keycode2;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +61,10 @@ public class Ability2 : MonoBehaviour
             }
 
         }
+    }
+    void SetKeyCode(KeyCode keyToSet)
+    {
+        keycode2 = keyToSet;
     }
 
     void MakeWall()

@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     public int experience;
     public Image healthBar;
     public GameObject healthCanvas;
-    public float dropRate;
+    public float dropRate = 0.3f; //can change this in inspector for different enemies?
     Camera  cam;
     public float healthness;
     public float startHealth ;
@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
     public float dropChance ;
     public GameObject enemyManager;
     public Vector3 dmgPopLoc;
+    public GameObject lootPrefab;
     
     // Start is called before the first frame update
     void Start()
@@ -72,8 +73,9 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                if (dropChance>dropRate)
-                SpawnLoot();
+                if (dropChance < dropRate)
+                    //SpawnLoot();
+                    Loot();
                 if (Loot1 != null)
                 {
                     player.GetComponent<PlayerXP>().AddExp(experience);
@@ -112,4 +114,11 @@ public void ShowDamagePop()
         Destroy(this.gameObject);
     }
 
+    public void Loot()
+    {
+        GameObject l;
+        l = Instantiate(lootPrefab, enemy.transform.position, Quaternion.identity);
+
+
+    }
 }

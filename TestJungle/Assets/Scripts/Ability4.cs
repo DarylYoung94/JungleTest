@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ability2 : MonoBehaviour
+public class Ability4 : MonoBehaviour
 {
-    public GameObject wallPrefab;
+    public KeyCode key;
+    public GameObject turretPrefab;
     public float cooldownTime = 5;
     public float nextFireTime = 0;
     Camera cam;
-    private Vector3 wallAimy;
+    private Vector3 turretAimy;
     public float range;
     public float reqRange = 10;
     public GameObject player;
-    public bool inRange ;
-    private Vector3 wallAim;
-    public KeyCode key;
+    public bool inRange;
+    private Vector3 turretAim;
+    public KeyCode keycode2;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,7 @@ public class Ability2 : MonoBehaviour
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        range = Vector3.Distance(player.transform.position, wallAim);
+        range = Vector3.Distance(player.transform.position, turretAim);
         if (range <= reqRange)
         {
             inRange = true;
@@ -41,7 +42,7 @@ public class Ability2 : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            wallAim = hit.point;
+            turretAim = hit.point;
         }
 
         if (nextFireTime > 0)
@@ -54,22 +55,21 @@ public class Ability2 : MonoBehaviour
             nextFireTime = 0;
         }
         {
-            if (Input.GetKeyDown(key) && nextFireTime == 0 && inRange== true) //add unlocked here
+            if (Input.GetKeyDown(key) && nextFireTime == 0 && inRange == true) //add unlocked here
             {
-                MakeWall();
+                SpawnTurret();
                 nextFireTime = cooldownTime;
             }
 
         }
     }
-    
-
-    void MakeWall()
+    void SpawnTurret()
     {
-        wallAimy = new Vector3(wallAim.x, 0, wallAim.z);
-        GameObject wall;
-        wall = Instantiate(wallPrefab, wallAim, Quaternion.identity);
-        wall.transform.LookAt(this.transform.position);
-        Destroy(wall, 5);
+        turretAimy = new Vector3(turretAim.x, 0, turretAim.z);
+        GameObject turretInstance;
+        turretInstance = Instantiate(turretPrefab, turretAim, Quaternion.identity);
+        turretInstance.transform.LookAt(this.transform.position);
+        Destroy(turretInstance, 5);
     }
+
 }

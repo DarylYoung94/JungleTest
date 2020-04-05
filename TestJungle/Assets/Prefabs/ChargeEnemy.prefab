@@ -377,6 +377,8 @@ MonoBehaviour:
   dropChance: 0
   enemyManager: {fileID: 0}
   dmgPopLoc: {x: 0, y: 2.5, z: 0}
+  lootPrefab: {fileID: 4923901484974759255, guid: 8739ff60affb00c4a9b8fcc66b4bb829,
+    type: 3}
 --- !u!54 &4699530912284115364
 Rigidbody:
   m_ObjectHideFlags: 0

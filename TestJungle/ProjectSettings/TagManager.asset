@@ -11,6 +11,8 @@ TagManager:
   - AtkSpd
   - RangedEnemy1
   - ChargeEnemy
+  - Totem
+  - Bullet
   layers:
   - Default
   - TransparentFX

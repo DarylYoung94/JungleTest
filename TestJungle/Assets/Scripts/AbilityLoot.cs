@@ -6,16 +6,14 @@ public class AbilityLoot : MonoBehaviour
 {
     public GameObject player;
     private int randomIndex;
-    public int totalLoots = 4;
-    public List<int> lootNumber = new List<int>();
+    public int totalLoots ;
     public GameObject loot;
 
     void Start()
     {
-      for (int i = 0; i < totalLoots; i++)
-        {
-            lootNumber.Add(i);
-        }
+        player = GameManager.instance.player;
+        totalLoots = player.GetComponent<PlayerManager>().totalLoots;
+      
     }
      void Update()
     {
@@ -25,36 +23,99 @@ public class AbilityLoot : MonoBehaviour
     {
         if(collision.collider.CompareTag ("Player"))
         {
-            randomIndex = Random.Range(0, totalLoots);
+            randomIndex = Random.Range(0, player.GetComponent<PlayerManager>().unobtainableAbilities.Count);
             Debug.Log(randomIndex);
             AssignAbility();
         }
     }
+    public enum abilityNames
+    {
+        BOMB =0,
+        WALL=1,
+        ATTACKSPEED=2,
+        TURRET=3,
+        TOTEM=4
+
+    }
     void AssignAbility()
     {
-        switch(randomIndex)
+        int assignedAbility = player.GetComponent<PlayerManager>().unobtainableAbilities[randomIndex];
+        switch ((abilityNames)assignedAbility) 
+
         {
-            case 3:
+            case abilityNames.BOMB:
                 player.GetComponent<Abilityscript>().enabled = true;
-                lootNumber.RemoveAt(0);
+                player.GetComponent<Abilityscript>().key = player.GetComponent<InputManager>().abilityList[0];
+                player.GetComponent<InputManager>().abilityList.RemoveAt(0);
+                findAbilityAndRemove(assignedAbility);
+                Destroy();
                 break;
 
-            case 2:
+            case abilityNames.WALL:
                 player.GetComponent<Ability2>().enabled = true;
-                lootNumber.RemoveAt(1);               
+                player.GetComponent<Ability2>().key = player.GetComponent<InputManager>().abilityList[0];
+                player.GetComponent<InputManager>().abilityList.RemoveAt(0);
+                findAbilityAndRemove(assignedAbility);
+                Destroy();
                 break;
 
-            case 1:
+            case abilityNames.ATTACKSPEED:
                 player.GetComponent<AttackSpeedBuff>().enabled = true;
-                lootNumber.RemoveAt(2); 
-                 break;
+                player.GetComponent<AttackSpeedBuff>().key = player.GetComponent<InputManager>().abilityList[0];
+                player.GetComponent<InputManager>().abilityList.RemoveAt(0);
+                findAbilityAndRemove(assignedAbility);
+                Destroy();
+                break;
+
+            case abilityNames.TURRET:
+                player.GetComponent<Ability4>().enabled = true;
+                player.GetComponent<Ability4>().key = player.GetComponent<InputManager>().abilityList[0];
+                player.GetComponent<InputManager>().abilityList.RemoveAt(0);
+                findAbilityAndRemove(assignedAbility);
+                Destroy();
+                break;
+
+            case abilityNames.TOTEM:
+                player.GetComponent<Ability5>().enabled = true;
+                player.GetComponent<Ability5>().key = player.GetComponent<InputManager>().abilityList[0];
+                player.GetComponent<InputManager>().abilityList.RemoveAt(0);
+                findAbilityAndRemove(assignedAbility);
+                Destroy();
+                break;
 
             default:
                 Debug.Log("no more abilities to unlock");
                 break;
-                
+
         }
     }
 
-   
+    public int findAbilityIndex(int abilityNumber)
+    {
+        int index = -1;
+        for (int i = 0; i < player.GetComponent<PlayerManager>().unobtainableAbilities.Count; i++)
+        {
+            if (player.GetComponent<PlayerManager>().unobtainableAbilities[i] == abilityNumber)
+            {
+                index = i;
+                break;
+            }
+        }
+
+        return index;
+    }
+
+   public void findAbilityAndRemove(int abilityNumber)
+    {
+        if (findAbilityIndex(abilityNumber) != -1)
+        {
+            player.GetComponent<PlayerManager>().unobtainableAbilities.RemoveAt(findAbilityIndex(abilityNumber));
+        }
+        Debug.Log("can't find ability in list");
+    }
+
+    public void Destroy()
+    {
+        Destroy(this.gameObject);
+    }
 }

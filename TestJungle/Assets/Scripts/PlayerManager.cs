@@ -19,11 +19,19 @@ public class PlayerManager : MonoBehaviour
     public Text expText;
     public Text levelText;
     public float lvl;
-    
+    public List<int> unobtainableAbilities;
+    public int totalLoots = 5 ;
+    public bool canTakeDamage=true;
 
     // Start is called before the first frame update
     void Start()
     {
+        for( int i=0; i<totalLoots; i++)
+        {
+            unobtainableAbilities.Add(i);
+        }
+
+
         //maxHealth = startHealth;
         maxHealth = startHealth + (player.GetComponent<PlayerXP>().level * 10);
 
@@ -48,12 +56,14 @@ public class PlayerManager : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-       
-        health -= amount;
-        healthBar.fillAmount = health / maxHealth;    
-        if(health<=0f)
+        if (canTakeDamage)
         {
-            Die();
+            health -= amount;
+            healthBar.fillAmount = health / maxHealth;
+            if (health <= 0f)
+            {
+                Die();
+            }
         }
     }
     public void Die()

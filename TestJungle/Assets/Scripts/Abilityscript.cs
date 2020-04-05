@@ -35,8 +35,8 @@ public class Abilityscript : MonoBehaviour
     public float distance = 100f;
     public Rigidbody bombRB;
     public GameObject Ability1TargetPrefab;
-   // public GameObject ability1Target;
-
+    // public GameObject ability1Target;
+    public KeyCode key;
 
     // Start is called before the first frame update
     void Awake()
@@ -75,7 +75,7 @@ public class Abilityscript : MonoBehaviour
         }
 
         //instantiate target
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(key))
         {
             GameObject ability1Target;
             ability1Target = Instantiate(Ability1TargetPrefab, bombDirection, Quaternion.identity);
@@ -90,7 +90,7 @@ public class Abilityscript : MonoBehaviour
 
        //Shoot 
         {
-            if (Input.GetKeyUp(KeyCode.Q)  && nextFireTime == 0) //add unlocked here
+            if (Input.GetKeyUp(key)  && nextFireTime == 0) //add unlocked here
             {
                 ShootBomb();
                 nextFireTime = cooldownTime;

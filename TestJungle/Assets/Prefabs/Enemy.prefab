@@ -334,7 +334,7 @@ SphereCollider:
   m_GameObject: {fileID: 1262703799088482766}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -451,7 +451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 350d5e8e619b43945b19eaf83d8958b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyLevel: 1
+  enemyLevel: 2
   damageTaken: 0
   damagePop: {fileID: 833885491248636895, guid: cee59fe21c0078a48b1ecfd64ef996db,
     type: 3}
@@ -471,6 +471,8 @@ MonoBehaviour:
   enemyManager: {fileID: 8343699857576561646, guid: ea9879d41520aea499d0a7cb48607e80,
     type: 3}
   dmgPopLoc: {x: 0, y: 2.5, z: 0}
+  lootPrefab: {fileID: 4923901484974759255, guid: 8739ff60affb00c4a9b8fcc66b4bb829,
+    type: 3}
 --- !u!54 &6383414595156212919
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -633,7 +635,7 @@ SphereCollider:
   m_GameObject: {fileID: 8062296000640769121}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}

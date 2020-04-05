@@ -13,7 +13,7 @@ public class AttackSpeedBuff : MonoBehaviour
     public float nextFireTime = 0;
     public float atkspeed;
     public BasicAttack basicAttack;
-
+    public KeyCode key;
     public float buffDuration = 8;
     public float timer = 0;
 
@@ -46,7 +46,7 @@ public class AttackSpeedBuff : MonoBehaviour
             nextFireTime = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && nextFireTime ==0)
+        if (Input.GetKeyDown(key) && nextFireTime ==0)
         {
             ATKSPD();
             nextFireTime = cooldownTime;
